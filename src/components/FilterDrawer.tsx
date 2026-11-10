@@ -6,6 +6,7 @@ import {
   RotateCcw,
   ArrowRight,
   ShieldCheck,
+  ChevronDown,
 } from "lucide-react";
 import type { Filters } from "../types";
 import { origins } from "../data/restaurants";
@@ -104,6 +105,8 @@ export default function FilterDrawer({
     if (!focusAllergies) return;
     const frame = requestAnimationFrame(() => {
       const section = document.querySelector("dialog .allergy-picker");
+      const diner = section?.closest<HTMLDetailsElement>("details.diner");
+      if (diner) diner.open = true;
       section?.scrollIntoView({ block: "start" });
       section?.querySelector("button")?.focus({ preventScroll: true });
     });
@@ -187,16 +190,41 @@ export default function FilterDrawer({
             : "Different diners can have different meals. We check each person separately."}
         </p>
         {draft.mode === "group" && (
-          <label className="field">
-            Number of diners
-            <input
-              type="number"
-              min="1"
-              max="20"
-              value={draft.diners.length}
-              onChange={(e) => setCount(e.target.valueAsNumber)}
-            />
-          </label>
+          <div className="field diner-counter">
+            <span id="diner-count-label">Number of diners</span>
+            <output
+              className="diner-count-value"
+              aria-labelledby="diner-count-label"
+              aria-live="polite"
+            >
+              {draft.diners.length}
+            </output>
+            <div
+              className="diner-count-buttons"
+              role="group"
+              aria-label="Adjust number of diners"
+            >
+              <button
+                type="button"
+                className="secondary"
+                aria-label="Remove one diner"
+                disabled={draft.diners.length <= 1}
+                onClick={() => setCount(draft.diners.length - 1)}
+              >
+                −
+              </button>
+              <button
+                type="button"
+                className="secondary"
+                aria-label="Add one diner"
+                disabled={draft.diners.length >= 20}
+                onClick={() => setCount(draft.diners.length + 1)}
+              >
+                +
+              </button>
+            </div>
+            <small>Choose between 1 and 20 diners.</small>
+          </div>
         )}
       </section>
       <section className="filter-section">
@@ -210,14 +238,21 @@ export default function FilterDrawer({
           />
         ) : (
           draft.diners.map((diner, i) => (
-            <details className="diner" key={i} open={i < 3}>
+            <details className="diner" key={i} name="group-diners">
               <summary>
-                {diner.label || `Person ${i + 1}`}
+                <span className="diner-summary-name">
+                  {diner.label || `Person ${i + 1}`}
+                </span>
                 <small>
                   {diner.requirements.length
                     ? `${diner.requirements.length} selected`
                     : "No specified restrictions"}
                 </small>
+                <ChevronDown
+                  className="diner-chevron"
+                  size={18}
+                  aria-hidden="true"
+                />
               </summary>
               <div className="disclosure-content">
                 <label className="field">

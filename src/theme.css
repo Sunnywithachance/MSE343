@@ -1747,3 +1747,57 @@ input[type="range"] {
     --page-inset: 22px;
   }
 }
+
+.diner-count-value {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e5e0d5;
+  border-radius: 10px;
+  background: #fff;
+  color: var(--dark);
+  font-size: 20px;
+  font-weight: 650;
+  text-align: center;
+}
+.diner-count-buttons {
+  display: flex;
+  gap: 12px;
+}
+.diner-count-buttons button {
+  flex: 1;
+  min-height: 48px;
+  padding: 6px 16px;
+  font-size: 26px;
+  line-height: 1;
+  touch-action: manipulation;
+}
+.diner-counter > small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.diner > summary {
+  min-height: 52px;
+  gap: 10px;
+  list-style: none;
+}
+.diner > summary::-webkit-details-marker {
+  display: none;
+}
+.diner-summary-name {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.diner-chevron {
+  flex-shrink: 0;
+  color: #8f2421;
+}
+.diner[open] > summary .diner-chevron {
+  transform: rotate(180deg);
+}
+.diner > summary:hover {
+  background: #fff7f0;
+  border-radius: 8px;
+}
