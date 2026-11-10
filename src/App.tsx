@@ -1,7 +1,6 @@
 import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowRight,
-  Home,
   Heart,
   Bookmark,
   Check,
@@ -217,9 +216,13 @@ export default function App() {
               <Compass size={18} />
               <span>Discover</span>
             </button>
-            <button className="nav-item" onClick={() => setPanel("shortlist")}>
-              <Bookmark size={18} />
-              <span>Shortlist</span>
+            <button
+              className="header-saved"
+              aria-label="Saved restaurants"
+              onClick={() => setPanel("shortlist")}
+            >
+              <Heart size={19} />
+              <span className="header-saved-label">Saved</span>
               {shortlist.length > 0 && <b>{shortlist.length}</b>}
             </button>
             <button
@@ -233,51 +236,6 @@ export default function App() {
           </nav>
         </div>
       </header>
-      <nav className="mobile-top-nav" aria-label="Mobile navigation">
-        <button
-          className={!detail ? "active" : ""}
-          onClick={() => {
-            setDetail(null);
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }}
-        >
-          <Home size={21} />
-          <span>Discover</span>
-        </button>
-        <button
-          onClick={() => {
-            setDetail(null);
-            setTimeout(
-              () =>
-                document
-                  .getElementById("discovery-map")
-                  ?.scrollIntoView({ behavior: "smooth", block: "center" }),
-              0,
-            );
-          }}
-        >
-          <MapPin size={21} />
-          <span>Map</span>
-        </button>
-        <button
-          className="top-filter"
-          aria-label="Open search filters"
-          onClick={() => setPanel("filters")}
-        >
-          <SlidersHorizontal size={23} />
-        </button>
-        <button onClick={() => setPanel("shortlist")}>
-          <Heart size={21} />
-          <span>Saved{shortlist.length ? ` · ${shortlist.length}` : ""}</span>
-        </button>
-        <button
-          aria-label="Dietary profile"
-          onClick={() => setPanel("profile")}
-        >
-          <UserRound size={21} />
-          <span>Profile</span>
-        </button>
-      </nav>
       {detail ? (
         <RestaurantDetails
           key={detail}
@@ -292,84 +250,192 @@ export default function App() {
         />
       ) : (
         <main className="discover-page">
-          <section className="intro">
-            <div>
-              <p className="eyebrow">
-                <span /> WATERLOO REGION · RESTAURANT EXPLORER
-              </p>
-              <h1>
-                Let’s eat.
-                <br />
-                Food that fits <em>you.</em>
-              </h1>
-              <p>Good food. Your needs. Everyone welcome.</p>
-            </div>
-            <div className="intro-note">
-              <Leaf size={22} />
-              <span>
-                A place for everyone.
-                <br />
-                <strong>Find your kind of good.</strong>
-              </span>
-            </div>
-          </section>
-          <section className="search-area" aria-label="Restaurant search">
-            <form
-              className="search-form"
-              onSubmit={(e) => {
-                e.preventDefault();
-                rememberSearch(filters.query);
-                searchRef.current?.blur();
-              }}
-            >
-              <Search size={21} />
-              <input
-                ref={searchRef}
-                aria-label="Search restaurants or dishes"
-                placeholder="Search restaurants or dishes..."
-                value={filters.query}
-                onFocus={() => setSuggestions(true)}
-                onKeyDown={(e) => {
-                  if (e.key === "Escape") setSuggestions(false);
-                }}
-                onChange={(e) => {
-                  setFilters({ ...filters, query: e.target.value });
-                  setSuggestions(true);
-                }}
-              />
-              {filters.query && (
-                <button
-                  className="icon-button"
-                  type="button"
-                  aria-label="Clear search"
-                  onClick={() => {
-                    setFilters({ ...filters, query: "" });
-                    searchRef.current?.focus();
-                  }}
-                >
-                  <X size={17} />
-                </button>
-              )}
-              <div className="search-divider" />
-              <span className="search-location">
-                <MapPin size={16} />
-                {origins[filters.origin].name}
-              </span>
-              <button
-                className="filter-button"
-                aria-label="Filters"
-                aria-haspopup="dialog"
-                type="button"
-                onClick={() => {
-                  setSuggestions(false);
-                  setPanel("filters");
+          <div className="discovery-hero">
+            <section className="intro">
+              <div>
+                <p className="eyebrow">
+                  <span /> WATERLOO REGION · RESTAURANT EXPLORER
+                </p>
+                <h1>
+                  Hungry?
+                  <br />
+                  Group dining made <em>easy</em>
+                </h1>
+                <p>Let's find food that fits everyone :)</p>
+              </div>
+              <div className="intro-note">
+                <Leaf size={22} />
+                <span>
+                  A place for everyone.
+                  <br />
+                  <strong>Find your kind of good.</strong>
+                </span>
+              </div>
+            </section>
+            <div className="hero-search">
+              <form
+                className="search-form"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  rememberSearch(filters.query);
+                  searchRef.current?.blur();
                 }}
               >
-                <SlidersHorizontal size={18} />
-                Filters
-                {allRequirements.length > 0 && <b>{allRequirements.length}</b>}
-              </button>
-            </form>
+                <Search size={21} />
+                <input
+                  ref={searchRef}
+                  aria-label="Search restaurants or dishes"
+                  placeholder="Search restaurants or dishes..."
+                  value={filters.query}
+                  onFocus={() => setSuggestions(true)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Escape") setSuggestions(false);
+                  }}
+                  onChange={(e) => {
+                    setFilters({ ...filters, query: e.target.value });
+                    setSuggestions(true);
+                  }}
+                />
+                {filters.query && (
+                  <button
+                    className="icon-button"
+                    type="button"
+                    aria-label="Clear search"
+                    onClick={() => {
+                      setFilters({ ...filters, query: "" });
+                      searchRef.current?.focus();
+                    }}
+                  >
+                    <X size={17} />
+                  </button>
+                )}
+                <div className="search-divider" />
+                <span className="search-location">
+                  <MapPin size={16} />
+                  {origins[filters.origin].name}
+                </span>
+                <button
+                  className="filter-button"
+                  aria-label="Filters"
+                  aria-haspopup="dialog"
+                  type="button"
+                  onClick={() => {
+                    setSuggestions(false);
+                    setPanel("filters");
+                  }}
+                >
+                  <SlidersHorizontal size={18} />
+                  Filters
+                  {allRequirements.length > 0 && (
+                    <b>{allRequirements.length}</b>
+                  )}
+                </button>
+              </form>
+              {suggestions && (
+                <div className="search-suggestions">
+                  <div className="section-title">
+                    <h3>
+                      {filters.query
+                        ? "Search suggestions"
+                        : "Find your next favourite"}
+                    </h3>
+                    <button
+                      className="icon-button"
+                      aria-label="Close search suggestions"
+                      onClick={() => setSuggestions(false)}
+                    >
+                      <X size={18} />
+                    </button>
+                  </div>
+                  <p className="helper">
+                    Suggestions search within your existing dietary filters.
+                  </p>
+                  {suggestionOptions.map((s) => (
+                    <button
+                      key={s}
+                      onClick={() => {
+                        setFilters({ ...filters, query: s });
+                        rememberSearch(s);
+                      }}
+                    >
+                      <Search size={15} />
+                      <span>{s}</span>
+                      <ArrowRight size={14} />
+                    </button>
+                  ))}
+                  {!suggestionOptions.length && (
+                    <p>No suggestions. Try a restaurant, dish or cuisine.</p>
+                  )}
+                  {recent.length > 0 && (
+                    <>
+                      <div className="section-title">
+                        <h4>Recent searches</h4>
+                        <button
+                          className="text-button"
+                          onClick={() => {
+                            setRecent([]);
+                            writeStored("recent", []);
+                          }}
+                        >
+                          Clear recent searches
+                        </button>
+                      </div>
+                      {recent.map((s) => (
+                        <button
+                          key={s}
+                          onClick={() => {
+                            setFilters({ ...filters, query: s });
+                            rememberSearch(s);
+                          }}
+                        >
+                          <Search size={15} />
+                          {s}
+                        </button>
+                      ))}
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+          <nav
+            className="mobile-top-nav sculpted-menu"
+            aria-label="Search tools"
+          >
+            <svg
+              className="hero-wave"
+              viewBox="0 0 390 110"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <path
+                fill="#bd2d28"
+                d="M0 0H390V82C347 64 310 53 272 71C239 86 226 110 195 110C164 110 151 86 118 71C80 53 43 64 0 82Z"
+              />
+              <path
+                fill="#e9685b"
+                opacity=".55"
+                d="M0 0H390V55C350 72 318 43 274 61C233 76 226 103 195 103C164 103 157 76 116 61C72 43 40 72 0 55Z"
+              />
+              <path
+                fill="#fff7f0"
+                d="M0 0H390C380 40 355 49 305 50C245 50 239 101 195 101C151 101 145 50 85 50C35 49 10 40 0 0Z"
+              />
+            </svg>
+            <button
+              className="top-filter"
+              aria-label="Open search filters"
+              aria-haspopup="dialog"
+              onClick={() => {
+                setSuggestions(false);
+                setPanel("filters");
+              }}
+            >
+              <SlidersHorizontal size={24} />
+              <span>Filters</span>
+            </button>
+          </nav>
+          <section className="search-area" aria-label="Restaurant search">
             <div className="quick-diets" aria-label="Quick dietary filters">
               <button
                 className={
@@ -453,71 +519,6 @@ export default function App() {
                 </button>
               ))}
             </div>
-            {suggestions && (
-              <div className="search-suggestions">
-                <div className="section-title">
-                  <h3>
-                    {filters.query
-                      ? "Search suggestions"
-                      : "Find your next favourite"}
-                  </h3>
-                  <button
-                    className="icon-button"
-                    aria-label="Close search suggestions"
-                    onClick={() => setSuggestions(false)}
-                  >
-                    <X size={18} />
-                  </button>
-                </div>
-                <p className="helper">
-                  Suggestions search within your existing dietary filters.
-                </p>
-                {suggestionOptions.map((s) => (
-                  <button
-                    key={s}
-                    onClick={() => {
-                      setFilters({ ...filters, query: s });
-                      rememberSearch(s);
-                    }}
-                  >
-                    <Search size={15} />
-                    <span>{s}</span>
-                    <ArrowRight size={14} />
-                  </button>
-                ))}
-                {!suggestionOptions.length && (
-                  <p>No suggestions. Try a restaurant, dish or cuisine.</p>
-                )}
-                {recent.length > 0 && (
-                  <>
-                    <div className="section-title">
-                      <h4>Recent searches</h4>
-                      <button
-                        className="text-button"
-                        onClick={() => {
-                          setRecent([]);
-                          writeStored("recent", []);
-                        }}
-                      >
-                        Clear recent searches
-                      </button>
-                    </div>
-                    {recent.map((s) => (
-                      <button
-                        key={s}
-                        onClick={() => {
-                          setFilters({ ...filters, query: s });
-                          rememberSearch(s);
-                        }}
-                      >
-                        <Search size={15} />
-                        {s}
-                      </button>
-                    ))}
-                  </>
-                )}
-              </div>
-            )}
             <div className="filter-chips">
               <span className="filter-caption">YOUR SEARCH</span>
               {filters.mode === "group" && (
@@ -911,7 +912,7 @@ function ProfilePanel({
             onFind(p);
           }}
         >
-          Find restaurants
+          Save profile with my changes
           <ArrowRight size={17} />
         </button>
       }
@@ -943,13 +944,8 @@ function ProfilePanel({
         />
         <span>
           <strong>Save my dietary preferences</strong>
-          <small>Stored only in this browser. No account needed.</small>
         </span>
       </label>
-      <div className="callout">
-        These preferences help explore demo evidence. They do not provide
-        medical or religious safety guarantees.
-      </div>
     </Modal>
   );
 }

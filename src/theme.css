@@ -1031,7 +1031,7 @@ input[type="range"] {
     border-bottom: 0;
     border-radius: 0 0 24px 24px;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     z-index: 15;
     gap: 7px;
   }
@@ -1302,5 +1302,448 @@ input[type="range"] {
   }
   .mobile-top-nav button.active svg {
     fill: #ba514b;
+  }
+}
+
+.header-saved {
+  position: relative;
+  min-height: 44px;
+  padding: 10px 13px;
+  border-radius: 12px;
+  background: #a53632;
+  color: #fff;
+  font-size: 13px;
+}
+.header-saved:hover {
+  background: #b83e38;
+}
+.header-saved b {
+  min-width: 17px;
+  padding: 1px 4px;
+  border-radius: 6px;
+  background: #fff0ee;
+  color: #8f2421;
+  font-size: 10px;
+}
+@media (max-width: 540px) {
+  .header-inner > nav {
+    gap: 10px;
+  }
+  .header-saved,
+  .profile-nav {
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+  }
+  .header-saved-label {
+    display: none;
+  }
+  .header-saved b {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+  }
+}
+/* Cream masthead with a sculpted red edge, matching the latest visual reference. */
+:root {
+  --hero-cream: #fff7f0;
+}
+.app-header {
+  width: calc(100% - 24px);
+  max-width: 1376px;
+  margin: 12px auto 0;
+  height: 70px;
+  background: var(--hero-cream);
+  border: 1px solid #efe2d8;
+  border-bottom: 0;
+  border-radius: 24px 24px 0 0;
+}
+.header-inner {
+  padding: 0 35px;
+}
+.app-header .brand {
+  color: #8f2421;
+  font-size: 26px;
+}
+.app-header .brand-sub {
+  display: none;
+}
+.app-header .brand-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  box-shadow: none;
+}
+.app-header .nav-item {
+  color: #8f2421;
+}
+.app-header .nav-item.current {
+  color: #8f2421;
+}
+.app-header .nav-item.current:after {
+  background: #d63b35;
+}
+.app-header .header-saved,
+.app-header .profile-nav {
+  background: #fbe9df;
+  color: #8f2421;
+  border-radius: 12px;
+}
+.app-header .header-saved:hover,
+.app-header .profile-nav:hover {
+  background: #f5d9cc;
+}
+.app-header button:focus-visible {
+  outline-color: #8f2421;
+}
+.discovery-hero {
+  position: relative;
+  z-index: 21;
+  margin: 0 -36px;
+  padding: 0 36px;
+  isolation: isolate;
+}
+.discovery-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--hero-cream);
+  border-left: 1px solid #efe2d8;
+  border-right: 1px solid #efe2d8;
+  z-index: -1;
+}
+.discovery-hero .intro {
+  display: block;
+  text-align: center;
+  padding: 15px 0 20px;
+}
+.discovery-hero .intro .eyebrow {
+  justify-content: center;
+  color: #8f2421;
+  font-size: 9px;
+  letter-spacing: 1.8px;
+  margin-bottom: 12px;
+}
+.discovery-hero .intro .eyebrow > span {
+  background: #d63b35;
+}
+.discovery-hero .intro h1 {
+  font-size: 39px;
+  font-weight: 750;
+  line-height: 1.15;
+  color: #431715;
+  letter-spacing: -1.3px;
+}
+.discovery-hero .intro em {
+  color: #431715;
+}
+.discovery-hero .intro em:after {
+  height: 5px;
+  bottom: 0;
+  background: #d63b35;
+}
+.discovery-hero .intro > div > p:last-child {
+  color: #7c2d26;
+  font-size: 14px;
+  margin-top: 12px;
+}
+.discovery-hero .intro-note {
+  display: none;
+}
+.hero-search {
+  position: relative;
+  z-index: 20;
+  max-width: 760px;
+  margin: 0 auto;
+  padding-bottom: 14px;
+}
+.hero-search .search-form {
+  background: #fffaf7;
+  border: 1px solid #efdcd0;
+  border-radius: 30px;
+  min-height: 48px;
+  padding: 5px 17px;
+  box-shadow: 0 3px 10px #a0442b03;
+}
+.hero-search .search-form > svg {
+  color: #78726b;
+}
+.hero-search .search-form input {
+  font-size: 13px;
+}
+.hero-search .filter-button {
+  display: none;
+}
+.hero-search .search-suggestions {
+  top: 55px;
+  text-align: left;
+}
+.sculpted-menu.mobile-top-nav {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 110px;
+  margin: 0 -36px 12px;
+  padding: 7px 0 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  z-index: 20;
+}
+.hero-wave {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 110px;
+  pointer-events: none;
+}
+.sculpted-menu.mobile-top-nav .top-filter {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  width: 84px;
+  height: 84px;
+  min-width: 84px;
+  min-height: 84px;
+  padding: 11px;
+  margin: 0;
+  color: #fff;
+  background: radial-gradient(circle at 30% 20%, #dc4940, #b42522 90%);
+  border: 5px solid var(--hero-cream);
+  border-radius: 50%;
+  box-shadow: 0 5px 12px #9c28251a;
+  background-clip: padding-box;
+  isolation: isolate;
+  touch-action: manipulation;
+  transition: box-shadow 120ms ease;
+}
+.sculpted-menu.mobile-top-nav .top-filter::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: #4d0c0b;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease;
+  z-index: 0;
+}
+.sculpted-menu.mobile-top-nav .top-filter > svg,
+.sculpted-menu.mobile-top-nav .top-filter > span {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+.sculpted-menu.mobile-top-nav .top-filter span {
+  font-size: 11px;
+  font-weight: 650;
+  line-height: 1;
+}
+@media (hover: hover) and (pointer: fine) {
+  .sculpted-menu.mobile-top-nav .top-filter:hover::before {
+    opacity: 0.1;
+  }
+}
+.sculpted-menu.mobile-top-nav .top-filter:active::before {
+  opacity: 0.16;
+}
+.sculpted-menu.mobile-top-nav button:focus-visible {
+  outline-color: #8f2421;
+}
+.search-area {
+  margin-top: 6px;
+}
+@media (max-width: 1100px) and (min-width: 541px) {
+  .app-header {
+    width: calc(100% - 24px);
+  }
+  .header-inner {
+    padding: 0 15px;
+  }
+  .discovery-hero {
+    margin-left: -16px;
+    margin-right: -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .sculpted-menu.mobile-top-nav {
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+}
+@media (max-width: 540px) {
+  .app-header {
+    width: calc(100% - 16px);
+    margin-top: 8px;
+    height: 62px;
+    background: var(--hero-cream);
+    border-radius: 22px 22px 0 0;
+  }
+  .header-inner {
+    padding: 0 16px;
+  }
+  .app-header .brand {
+    font-size: 23px;
+    gap: 8px;
+  }
+  .app-header .brand-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+  }
+  .app-header .header-saved,
+  .app-header .profile-nav {
+    width: 40px;
+    height: 40px;
+    min-height: 40px;
+    padding: 10px;
+  }
+  .discovery-hero {
+    margin: 0 -14px;
+    padding: 0 14px;
+  }
+  .discovery-hero .intro {
+    padding: 10px 0 17px;
+  }
+  .discovery-hero .intro .eyebrow {
+    font-size: 7px;
+    letter-spacing: 1.1px;
+    gap: 5px;
+    margin-bottom: 10px;
+  }
+  .discovery-hero .intro h1 {
+    font-size: 26px;
+    line-height: 1.17;
+    letter-spacing: -0.7px;
+  }
+  .discovery-hero .intro em:after {
+    height: 4px;
+  }
+  .discovery-hero .intro > div > p:last-child {
+    font-size: 12px;
+    margin-top: 10px;
+  }
+  .hero-search {
+    padding: 0 7px 11px;
+  }
+  .hero-search .search-form {
+    min-height: 40px;
+    padding: 3px 13px;
+    gap: 8px;
+  }
+  .hero-search .search-form > svg {
+    width: 17px;
+  }
+  .hero-search .search-form input {
+    font-size: 11px;
+    padding: 7px 0;
+  }
+  .hero-search .search-suggestions {
+    top: 46px;
+  }
+  .sculpted-menu.mobile-top-nav {
+    margin: 0 -14px 9px;
+    height: 100px;
+    padding-top: 3px;
+  }
+  .hero-wave {
+    height: 100px;
+  }
+  .sculpted-menu.mobile-top-nav .top-filter {
+    width: 82px;
+    height: 82px;
+    min-width: 82px;
+    min-height: 82px;
+    gap: 3px;
+  }
+  .search-area {
+    margin-top: 0;
+  }
+  .search-area .quick-diets {
+    margin-top: 0;
+  }
+  #discovery-map,
+  .evidence-section,
+  .restaurant-card {
+    scroll-margin-top: 16px;
+  }
+}
+@media (max-width: 359px) {
+  .discovery-hero .intro h1 {
+    font-size: 23px;
+  }
+  .discovery-hero .intro .eyebrow {
+    font-size: 6px;
+    letter-spacing: 0.8px;
+  }
+}
+
+/* Keep selected results and the desktop map below the pinned filter bar. */
+.discover-page #discovery-map,
+.discover-page .restaurant-card {
+  scroll-margin-top: 126px;
+}
+.discover-page .map-column {
+  top: 126px;
+}
+@media (max-width: 540px) {
+  .discover-page #discovery-map,
+  .discover-page .restaurant-card {
+    scroll-margin-top: 116px;
+  }
+}
+/* Fill the viewport with the masthead; inset only its contents, not the surface. */
+:root {
+  --page-inset: 48px;
+}
+.app-header {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+}
+.header-inner {
+  padding-left: var(--page-inset);
+  padding-right: var(--page-inset);
+}
+.discover-page {
+  max-width: none;
+  padding-left: var(--page-inset);
+  padding-right: var(--page-inset);
+}
+.discovery-hero {
+  margin-left: calc(-1 * var(--page-inset));
+  margin-right: calc(-1 * var(--page-inset));
+  padding-left: var(--page-inset);
+  padding-right: var(--page-inset);
+}
+.discovery-hero::before {
+  border: 0;
+}
+.sculpted-menu.mobile-top-nav {
+  margin-left: calc(-1 * var(--page-inset));
+  margin-right: calc(-1 * var(--page-inset));
+}
+.discovery-grid,
+.discover-page > .search-area {
+  max-width: 1304px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 1100px) {
+  :root {
+    --page-inset: 28px;
+  }
+}
+@media (max-width: 540px) {
+  :root {
+    --page-inset: 22px;
   }
 }
