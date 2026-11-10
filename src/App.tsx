@@ -233,6 +233,51 @@ export default function App() {
           </nav>
         </div>
       </header>
+      <nav className="mobile-top-nav" aria-label="Mobile navigation">
+        <button
+          className={!detail ? "active" : ""}
+          onClick={() => {
+            setDetail(null);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        >
+          <Home size={21} />
+          <span>Discover</span>
+        </button>
+        <button
+          onClick={() => {
+            setDetail(null);
+            setTimeout(
+              () =>
+                document
+                  .getElementById("discovery-map")
+                  ?.scrollIntoView({ behavior: "smooth", block: "center" }),
+              0,
+            );
+          }}
+        >
+          <MapPin size={21} />
+          <span>Map</span>
+        </button>
+        <button
+          className="top-filter"
+          aria-label="Open search filters"
+          onClick={() => setPanel("filters")}
+        >
+          <SlidersHorizontal size={23} />
+        </button>
+        <button onClick={() => setPanel("shortlist")}>
+          <Heart size={21} />
+          <span>Saved{shortlist.length ? ` · ${shortlist.length}` : ""}</span>
+        </button>
+        <button
+          aria-label="Dietary profile"
+          onClick={() => setPanel("profile")}
+        >
+          <UserRound size={21} />
+          <span>Profile</span>
+        </button>
+      </nav>
       {detail ? (
         <RestaurantDetails
           key={detail}
@@ -673,51 +718,7 @@ export default function App() {
           </div>
         </main>
       )}
-      <nav className="mobile-bottom-nav" aria-label="Mobile navigation">
-        <button
-          className={!detail ? "active" : ""}
-          onClick={() => {
-            setDetail(null);
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }}
-        >
-          <Home size={21} />
-          <span>Discover</span>
-        </button>
-        <button
-          onClick={() => {
-            setDetail(null);
-            setTimeout(
-              () =>
-                document
-                  .getElementById("discovery-map")
-                  ?.scrollIntoView({ behavior: "smooth", block: "center" }),
-              0,
-            );
-          }}
-        >
-          <MapPin size={21} />
-          <span>Map</span>
-        </button>
-        <button
-          className="bottom-filter"
-          aria-label="Open search filters"
-          onClick={() => setPanel("filters")}
-        >
-          <SlidersHorizontal size={23} />
-        </button>
-        <button onClick={() => setPanel("shortlist")}>
-          <Heart size={21} />
-          <span>Saved{shortlist.length ? ` · ${shortlist.length}` : ""}</span>
-        </button>
-        <button
-          aria-label="Dietary profile"
-          onClick={() => setPanel("profile")}
-        >
-          <UserRound size={21} />
-          <span>Profile</span>
-        </button>
-      </nav>
+
       <footer className="site-footer">
         <span>
           <strong>Plateful</strong> · Find food that fits you.

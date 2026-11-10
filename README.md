@@ -122,9 +122,9 @@ The same `dist` output can be served by another static host. No Sites hosting ac
 
 ## Visual theme
 
-The sunny yellow-and-white theme is defined in `src/theme.css`, layered over the base layout in `src/index.css`. It uses yellow `#FFC629`, pale yellow `#FFF6D9`, charcoal `#292A27`, white cards and warm neutral backgrounds. Dietary support, unknown and unsupported status colours retain their semantic meaning.
+The red-and-white theme is defined in `src/theme.css`, layered over the base layout in `src/index.css`. It uses red `#D63B35`, pale red `#FFF0EE`, charcoal `#292A27`, white cards and warm neutral backgrounds. Dietary support, unknown and unsupported status colours retain their semantic meaning.
 
-The mobile interface includes a fixed bottom navigation bar for discovery, the illustrative map, search filters, saved restaurants and the dietary profile. Quick dietary chips toggle temporary personal search requirements. In group mode they open the full filter editor so requirements remain assigned to individual diners. **All food** explicitly starts a personal search with no dietary requirements.
+The mobile interface includes a sticky top navigation bar below the brand header for discovery, the illustrative map, search filters, saved restaurants and the dietary profile. Quick dietary chips toggle temporary personal search requirements. In group mode they open the full filter editor so requirements remain assigned to individual diners. **All food** explicitly starts a personal search with no dietary requirements.
 
 ## Allergies, egg-free and sugar-conscious workflow
 
