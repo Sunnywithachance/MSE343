@@ -409,16 +409,16 @@ export default function App() {
               aria-hidden="true"
             >
               <path
-                fill="#bd2d28"
+                fill="var(--primary)"
                 d="M0 0H390V82C347 64 310 53 272 71C239 86 226 110 195 110C164 110 151 86 118 71C80 53 43 64 0 82Z"
               />
               <path
-                fill="#e9685b"
+                fill="var(--secondary)"
                 opacity=".55"
                 d="M0 0H390V55C350 72 318 43 274 61C233 76 226 103 195 103C164 103 157 76 116 61C72 43 40 72 0 55Z"
               />
               <path
-                fill="#fff7f0"
+                fill="var(--hero-cream)"
                 d="M0 0H390C380 40 355 49 305 50C245 50 239 101 195 101C151 101 145 50 85 50C35 49 10 40 0 0Z"
               />
             </svg>

@@ -1,6 +1,6 @@
 # Plateful original colour inventory
 
-> **Archived palette:** This reference captures the original teal design, before the yellow UI redesign. Current theme colours are defined in `src/theme.css`: red `#D63B35`, pale red `#FFF0EE`, charcoal `#292A27`, white `#FFFFFF`, and warm backgrounds `#FAFAF8` / `#FCFCFA`.
+> **Archived palette:** This reference captures the original teal design, before the yellow UI redesign. Current theme colours are defined in `src/theme.css`: deep teal `#1B4B5A`, muted blue `#8FB8C4`, and pale blue `#DDEAEE`, with white foregrounds on primary actions. Dietary status and warning colours remain semantic.
 
 167 distinct hexadecimal colour values are declared across the interface, map, restaurant artwork, and page metadata. White spellings (`white`, `#fff`, `#FFFFFF`) are combined. This lists source colours, including alpha variants; antialiasing and blending create additional pixels on screen.
 
